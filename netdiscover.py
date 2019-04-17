@@ -26,6 +26,9 @@ def write_data(name_of_file,data):
             else:
                 outfile.write(key)
                 outfile.write(',')
+        for item in net:
+            items = list(item.values())
+            outfile.write(items[0]+','+items[1]+'\n')
 
 
 if __name__ == "__main__":
