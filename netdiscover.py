@@ -4,8 +4,8 @@ import multiprocessing
 def results(item):
     x = item[0]
     y = item[1]
-    status = subprocess.Popen('arp -a 192.168.{}.{}'.format(x,y),shell=True, stdout=subprocess.PIPE).stdout.read()
-    # print('Done for 192.168.{}.{}'.format(x,y))
+    status = subprocess.Popen('arp -a 172.16.{}.{}'.format(x,y),shell=True, stdout=subprocess.PIPE).stdout.read()
+    print('Done for 172.16.{}.{}'.format(x,y))
     return status
 
 def get_possibilities():
@@ -50,6 +50,7 @@ if __name__ == "__main__":
             for item in temp:
                 if len(item) > 5:
                     data.append(item)
+                    print(item)
             net.append({"ip": data[0], "mac": data[1]})
 
     # Print data here
