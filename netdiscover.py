@@ -1,5 +1,6 @@
 import subprocess
 import multiprocessing
+import nmap
 
 def results(item):
     x = item[0]
@@ -11,9 +12,8 @@ def results(item):
 def get_possibilities():
     array = range(0, 256)
     imp_array = []
-    for x in array:
-        for y in array:
-            imp_array.append((x, y))
+    for y in array:
+            imp_array.append((100, y))
     return imp_array
 
 def write_data(name_of_file,data):
@@ -50,12 +50,15 @@ if __name__ == "__main__":
             for item in temp:
                 if len(item) > 5:
                     data.append(item)
-                    print(item)
+                    # print(item)
             net.append({"ip": data[0], "mac": data[1]})
 
     # Print data here
-    # print(net)
+    print(net)
+    nm = nmap.PortScanner()
+    for item in net:
+        nm.scan('172.16.100.227', '22-9000')
 
     # CSV output
-    write_data('Results.csv',net)
+    # write_data('Results.csv',net)
 
