@@ -2,8 +2,9 @@ import nmap
 import csv
 
 nm = nmap.PortScanner()
-nm.scan('172.16.100.227','22-8000')
+print("Scanner done")
+nm.scan('192.168.1.254','22-9000')
+print("Scanning now")
+ip = nm['192.168.1.254']
 
-ip = nm['172.16.100.227']
-
-print(ip['tcp'].keys())
+print(ip)
