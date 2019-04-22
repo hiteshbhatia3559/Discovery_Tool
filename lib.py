@@ -1,9 +1,7 @@
 import subprocess
 # import multiprocessing
 import nmap
-
-
-# import csv
+import csv
 
 
 def results(item):
@@ -22,19 +20,12 @@ def get_possibilities():
     return imp_array
 
 
-def write_data(name_of_file, data):
-    net = data
+def write_data(name_of_file, net):
     with open(name_of_file, 'w+', newline='') as outfile:
-        for key in list(net[1].keys()):
-            if key == list(net[1].keys())[-1]:
-                outfile.write(key)
-                outfile.write('\n')
-            else:
-                outfile.write(key)
-                outfile.write(',')
-        for item in net:
-            items = list(item.values())
-            outfile.write(items[0] + ',' + items[1] + '\n')
+        keys = net[0].keys()
+        dict_writer = csv.DictWriter(outfile,keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(net)
 
 
 def get_results(net):
