@@ -21,8 +21,12 @@ def get_possibilities():
 
 
 def write_data(name_of_file, net):
+    keys = net[0].keys()
     with open(name_of_file, 'w+', newline='') as outfile:
-        print(net)
+        dict_writer = csv.DictWriter(outfile, keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(net)
+        print("Done writing")
 
 
 def get_results(net):
@@ -40,10 +44,10 @@ def get_results(net):
                 # item['tcp'] = ip['tcp']
                 print("Open ports found for {}".format(item['ip']))
             except:
-                item['details'] = ''
+                item['details'] = dict()
                 print("No open ports for {}".format(item['ip']))
         except:
-            # item['details'] = ''
+            # item['details'] = dict()
             print("Irrelevant IP found")
     return net
 

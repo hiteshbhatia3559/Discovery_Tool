@@ -13,7 +13,6 @@ if __name__ == "__main__":
     net = clean_output(output)
 
     # Print data here
-    # print(net)
     net_results = get_results(net)
 
     # CSV output
