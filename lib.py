@@ -2,13 +2,15 @@ import subprocess
 # import multiprocessing
 import nmap
 import csv
+import socket
 
 
 def results(item):
-    x = item[0]
+    # x = item[0]
     y = item[1]
-    status = subprocess.Popen('arp -a 192.168.{}.{}'.format(x, y), shell=True, stdout=subprocess.PIPE).stdout.read()
-    print('Done for 192.168.{}.{}'.format(x, y))
+    got_ip = socket.gethostbyname(socket.gethostname()).split('.')
+    status = subprocess.Popen('arp -a {}.{}.{}.{}'.format(got_ip[0],got_ip[1],got_ip[2], y), shell=True, stdout=subprocess.PIPE).stdout.read()
+    print('Done for {}.{}.{}.{}'.format(got_ip[0],got_ip[1],got_ip[2], y))
     return status
 
 
