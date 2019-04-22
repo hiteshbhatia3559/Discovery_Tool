@@ -23,7 +23,12 @@ def get_possibilities():
 
 
 def write_data(name_of_file, net):
-    keys = net[0].keys()
+    temp = []
+    for item in net:
+        temp.append(len(list(item.keys())))
+    index = temp.index(max(temp))
+
+    keys = net[index].keys()
     with open(name_of_file, 'w+', newline='') as outfile:
         dict_writer = csv.DictWriter(outfile, keys)
         dict_writer.writeheader()
